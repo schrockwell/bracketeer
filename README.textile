@@ -1,0 +1,5 @@
+h1. About Bracketeer
+
+Bracketeer is a Java console application that uses year-end team statistics to generate a printable, plain-text bracket for the NCAA Division I basketball tournament.
+
+Games can be scored in any arbitrary way by simply creating a class in the @bracketeers.algorithms@ package that implements the @bracketeer.algorithms.Scorer@ interface.

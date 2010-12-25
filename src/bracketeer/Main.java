@@ -1,7 +1,6 @@
 package bracketeer;
 
 import java.io.*;
-import java.lang.annotation.Annotation;
 import java.util.*;
 
 import bracketeer.Parser.*;
@@ -18,9 +17,26 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		
-		if (args.length < 3) {
-			System.out.println("Too few arguments. Required arguments: <stats CSV file> <first round CSV file> <algorithm name>");
+		if (args.length < 3 || args[0].isEmpty() || args[1].isEmpty() || args[2].isEmpty()) {
+			System.out.println("Too few arguments. Required arguments: [year] [men|women] [scorer class name]");
 			return;
+		}
+		
+		if (!args[1].equals("men") && !args[1].equals("women")) {
+			System.out.println("The second argument must be 'men' or 'women'.");
+			return;
+		}
+		
+		String year = args[0];
+		String sex = args[1];
+		String scorerClassName = args[2];
+		
+		Scorer scorer;
+		try {
+			scorer = (Scorer) Class.forName("bracketeer.algorithms." + scorerClassName).newInstance();
+		} catch (Exception ex) {
+			System.out.println("The scorer class '" + scorerClassName + "' was not found in the package bracketeer.algorithms. Check your capitalization and be sure to recompile.");
+			return;			
 		}
 		
 		Vector<Stat> stats = new Vector<Stat>();
@@ -47,17 +63,21 @@ public class Main {
 		stats.add(new Stat("Division IThree-Point Field-Goal Percentage", "3FGA", "3FGA"));
 		stats.add(new Stat("Division IThree-Point Field-Goal Percentage", "GM", "GM"));
 		
-		if (args[0].indexOf("women") > -1) {
+		if (args[1].equals("women")) {
 			stats.add(new Stat("Division ITurnover Margin", "Margin", "TO RATIO"));
 		} else {
 			stats.add(new Stat("Division ITurnover Margin", "Ratio", "TO RATIO"));
 		}
 		
-		System.out.println(System.getProperty("user.dir"));
+		String rankingsFileName = "seasons/" + year + "/rankings_" + sex + ".csv";
+		String firstRoundFileName = "seasons/" + year + "/firstround_" + sex + ".csv";
+		String outputFileName = "results/" + scorerClassName + ".csv";
 		
-		Hashtable<String, Team> teams = Parser.parseTeams(new FileReader(args[0]), stats);
+		new File("results").mkdir();
 		
-		Round firstRound = Parser.parseFirstRound(new FileReader(args[1]), teams);
+		Hashtable<String, Team> teams = Parser.parseTeams(new FileReader(rankingsFileName), stats);
+		
+		Round firstRound = Parser.parseFirstRound(new FileReader(firstRoundFileName), teams);
 		
 		Vector<Team> firstRoundTeams = new Vector<Team>();
 		
@@ -68,7 +88,7 @@ public class Main {
 		
 		//Hashtable<String, CompiledStat> compiledStats = Parser.compileStats(stats, firstRoundTeams);
 		
-		Scorer scorer = (Scorer) Class.forName("bracketeer.algorithms." + args[2]).newInstance();
+		
 		
 		// To play one game:
 		
@@ -76,7 +96,7 @@ public class Main {
 		t.play();
 		System.out.print(t.toPrintableString());
 		
-		FileWriter writer = new FileWriter(args[2] + ".csv");
+		FileWriter writer = new FileWriter(outputFileName);
 		writer.write(t.toSummaryString());
 		writer.close();
 		

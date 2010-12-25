@@ -1,25 +1,39 @@
-<project>
+<project name="bracketeer" basedir="." default="main">
+	
+	<property name="year" value="2010" />
+	<property name="sex" value="" />
+	<property name="scorer" value="" />
+
+	
+    <property name="src.dir"     value="src"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+
+    <property name="main-class"  value="bracketeer.Main"/>
 
     <target name="clean">
-        <delete dir="build"/>
+        <delete dir="${build.dir}"/>
     </target>
 
     <target name="compile">
-        <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes"/>
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
     </target>
 
-    <target name="jar">
-        <mkdir dir="build/jar"/>
-        <jar destfile="build/jar/Bracketeer.jar" basedir="build/classes">
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
             <manifest>
-                <attribute name="Main-Class" value="bracketeer.Main"/>
+                <attribute name="Main-Class" value="${main-class}"/>
             </manifest>
         </jar>
+    	<echo message="Bracketeer compiled. To run:" />
+    	<echo message="java -jar build/jar/bracketeer.jar [year] [men|women] [scorer class name]" />
     </target>
 
-    <target name="run">
-        <java jar="build/jar/Bracketeer.jar" fork="true"/>
-    </target>
+    <target name="clean-build" depends="clean,jar"/>
+
+    <target name="main" depends="clean-build"/>
 
 </project>
