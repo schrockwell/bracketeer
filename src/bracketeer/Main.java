@@ -33,9 +33,9 @@ public class Main {
 		
 		Referee referee;
 		try {
-			referee = (Referee) Class.forName("bracketeer.algorithms." + refereeClassName).newInstance();
+			referee = (Referee) Class.forName("bracketeer.referees." + refereeClassName).newInstance();
 		} catch (Exception ex) {
-			System.out.println("The referee class '" + refereeClassName + "' was not found in the package bracketeer.algorithms. Check your capitalization and be sure to recompile.");
+			System.out.println("The referee class '" + refereeClassName + "' was not found in the package bracketeer.referees. Check your capitalization and be sure to recompile.");
 			return;			
 		}
 		
