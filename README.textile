@@ -20,9 +20,9 @@ Games can be scored in any arbitrary way by simply creating a class in the @brac
 
 Here is the entire Scorer interface:
 
-<code>public interface Scorer {
+<pre>public interface Scorer {
 	// Expected to set game.scores[], game.winner, game.loser, game.summaryStats, game.summaries
 	public void playGame(Game game);
-}</code>
+}</pre>
 
 [ to be completed ]
