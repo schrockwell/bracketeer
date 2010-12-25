@@ -18,7 +18,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		
 		if (args.length < 3 || args[0].isEmpty() || args[1].isEmpty() || args[2].isEmpty()) {
-			System.out.println("Too few arguments. Required arguments: [year] [men|women] [scorer class name]");
+			System.out.println("Too few arguments. Required arguments: [year] [men|women] [referee class name]");
 			return;
 		}
 		
@@ -29,13 +29,13 @@ public class Main {
 		
 		String year = args[0];
 		String sex = args[1];
-		String scorerClassName = args[2];
+		String refereeClassName = args[2];
 		
-		Referee scorer;
+		Referee referee;
 		try {
-			scorer = (Referee) Class.forName("bracketeer.algorithms." + scorerClassName).newInstance();
+			referee = (Referee) Class.forName("bracketeer.algorithms." + refereeClassName).newInstance();
 		} catch (Exception ex) {
-			System.out.println("The scorer class '" + scorerClassName + "' was not found in the package bracketeer.algorithms. Check your capitalization and be sure to recompile.");
+			System.out.println("The referee class '" + refereeClassName + "' was not found in the package bracketeer.algorithms. Check your capitalization and be sure to recompile.");
 			return;			
 		}
 		
@@ -71,7 +71,7 @@ public class Main {
 		
 		String rankingsFileName = "seasons/" + year + "/rankings_" + sex + ".csv";
 		String firstRoundFileName = "seasons/" + year + "/firstround_" + sex + ".csv";
-		String outputFileName = "results/" + scorerClassName + ".csv";
+		String outputFileName = "results/" + refereeClassName + ".csv";
 		
 		new File("results").mkdir();
 		
@@ -92,7 +92,7 @@ public class Main {
 		
 		// To play one game:
 		
-		Tournament t = new Tournament(firstRound, null, scorer);
+		Tournament t = new Tournament(firstRound, null, referee);
 		t.play();
 		System.out.print(t.toPrintableString());
 		

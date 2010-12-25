@@ -52,7 +52,7 @@ public class Tournament {
 		
 		for (int i = 0; i < round.size(); i += 2) {
 			Game newGame = new Game();
-			newGame.scorer = scoreable;
+			newGame.referee = scoreable;
 			
 			Game[] previousGames = new Game[] { round.get(i), round.get(i + 1) };
 			for (Game previousGame : previousGames)

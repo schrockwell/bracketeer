@@ -1,10 +1,5 @@
 <project name="bracketeer" basedir="." default="main">
 	
-	<property name="year" value="2010" />
-	<property name="sex" value="" />
-	<property name="scorer" value="" />
-
-	
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
@@ -29,7 +24,7 @@
             </manifest>
         </jar>
     	<echo message="Bracketeer compiled. To run:" />
-    	<echo message="java -jar build/jar/bracketeer.jar [year] [men|women] [scorer class name]" />
+    	<echo message="java -jar build/jar/bracketeer.jar [year] [men|women] [referee class name]" />
     </target>
 
     <target name="clean-build" depends="clean,jar"/>

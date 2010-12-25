@@ -4,23 +4,23 @@ Bracketeer is a Java console application that uses year-end team statistics to g
 
 h1. Running Bracketeer
 
-First navigate to the root source directory and run @ant@ to compile a JAR:
+First navigate to the root source directory and run @ant@ to compile the application into a jar.
 
 <pre>$ ant</pre>
 
-Now run the Bracketeer, specifying a year, a sex, and the scorer class to use. E.g.
+Now run the Bracketeer, specifying a year, a sex, and the referee class to use. E.g.
 
-<pre>$ java -jar build/jar/bracketeer.jar 2010 women WomenScorer2010</pre>
+<pre>$ java -jar build/jar/bracketeer.jar 2010 women WomenReferee2010</pre>
 
-If the scorer has generated any other output, it will be found in the @results/@ directory.
+If the referee has generated any summary output, it will be found in the @results/@ directory.
 
-h1. Creating Your Own Scorer
+h1. Creating Your Own Referee
 
-Games can be scored in any arbitrary way by simply creating a class in the @bracketeers.algorithms@ package that implements the @bracketeer.algorithms.Scorer@ interface.
+Games can be scored in any arbitrary way by simply creating a class in the @bracketeers.algorithms@ package that implements the @bracketeer.algorithms.Referee@ interface.
 
-Here is the entire Scorer interface:
+Here is the entire Referee interface:
 
-<pre>public interface Scorer {
+<pre>public interface Referee {
 	// Expected to set game.scores[], game.winner, game.loser, game.summaryStats, game.summaries
 	public void playGame(Game game);
 }</pre>

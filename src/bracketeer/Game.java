@@ -15,10 +15,10 @@ public class Game {
 	public Team winner, loser;
 	public double[] scores = new double[2];
 	public Hashtable<String, CompiledStat> compiledStats;
-	public Referee scorer;
+	public Referee referee;
 	
 	public Team play() {
-		scorer.playGame(this);
+		referee.playGame(this);
 		return winner;
 	}
 	
@@ -30,7 +30,7 @@ public class Game {
 	
 	public Game(Team[] teams, Referee scoreable) {
 		this(teams);
-		this.scorer = scoreable;
+		this.referee = scoreable;
 	}
 	
 	public void addTeam(Team team) {
