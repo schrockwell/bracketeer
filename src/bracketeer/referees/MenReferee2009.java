@@ -1,4 +1,4 @@
-package bracketeer.algorithms;
+package bracketeer.referees;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ import bracketeer.CompiledStat;
 import bracketeer.Game;
 import bracketeer.Team;
 
-public class MenScorer2009 implements Scorer {
+public class MenReferee2009 implements Referee {
 
 	private static final double VARIABILITY = 0.15;
 	

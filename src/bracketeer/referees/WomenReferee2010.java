@@ -1,11 +1,11 @@
-package bracketeer.algorithms;
+package bracketeer.referees;
 
 import bracketeer.Game;
 import bracketeer.Team;
 
 import java.util.Random;
 
-public class WomenScorer2010 implements Scorer {
+public class WomenReferee2010 implements Referee {
 
 	Random _rand = new Random();
 	

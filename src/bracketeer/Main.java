@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 import bracketeer.Parser.*;
-import bracketeer.algorithms.Scorer;
+import bracketeer.referees.Referee;
 
 public class Main {
 
@@ -31,9 +31,9 @@ public class Main {
 		String sex = args[1];
 		String scorerClassName = args[2];
 		
-		Scorer scorer;
+		Referee scorer;
 		try {
-			scorer = (Scorer) Class.forName("bracketeer.algorithms." + scorerClassName).newInstance();
+			scorer = (Referee) Class.forName("bracketeer.algorithms." + scorerClassName).newInstance();
 		} catch (Exception ex) {
 			System.out.println("The scorer class '" + scorerClassName + "' was not found in the package bracketeer.algorithms. Check your capitalization and be sure to recompile.");
 			return;			

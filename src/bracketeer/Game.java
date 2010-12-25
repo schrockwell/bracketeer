@@ -2,7 +2,7 @@ package bracketeer;
 
 import java.util.*;
 
-import bracketeer.algorithms.Scorer;
+import bracketeer.referees.Referee;
 
 public class Game {
 
@@ -15,7 +15,7 @@ public class Game {
 	public Team winner, loser;
 	public double[] scores = new double[2];
 	public Hashtable<String, CompiledStat> compiledStats;
-	public Scorer scorer;
+	public Referee scorer;
 	
 	public Team play() {
 		scorer.playGame(this);
@@ -28,7 +28,7 @@ public class Game {
 		this.teams = teams;
 	}
 	
-	public Game(Team[] teams, Scorer scoreable) {
+	public Game(Team[] teams, Referee scoreable) {
 		this(teams);
 		this.scorer = scoreable;
 	}

@@ -1,9 +1,9 @@
-package bracketeer.algorithms;
+package bracketeer.referees;
 
 import java.util.Hashtable;
 import bracketeer.*;
 
-public class WomenScorer2009 implements Scorer {
+public class WomenReferee2009 implements Referee {
 
 	public void playGame(Game game) {
 		

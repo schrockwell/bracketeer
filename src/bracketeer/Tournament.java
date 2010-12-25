@@ -6,7 +6,7 @@ import java.security.*;
 import java.util.*;
 import au.com.bytecode.opencsv.*;
 
-import bracketeer.algorithms.Scorer;
+import bracketeer.referees.Referee;
 
 public class Tournament {
 
@@ -16,9 +16,9 @@ public class Tournament {
 	
 	private Vector<Round> rounds = new Vector<Round>(); 
 	private Hashtable<String, CompiledStat> compiledStats;
-	private Scorer scoreable;
+	private Referee scoreable;
 	
-	public Tournament(Round firstRound, Hashtable<String, CompiledStat> compiledStats, Scorer scoreable) {
+	public Tournament(Round firstRound, Hashtable<String, CompiledStat> compiledStats, Referee scoreable) {
 		
 		if (md5 == null) {
 			try {
