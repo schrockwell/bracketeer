@@ -6,11 +6,11 @@ h1. Running Bracketeer
 
 First navigate to the root source directory and run @ant@ to compile a JAR:
 
-@ant@
+<pre>$ ant</pre>
 
 Now run the Bracketeer, specifying a year, a sex, and the scorer class to use. E.g.
 
-@java -jar build/jar/bracketeer.jar 2010 women WomenScorer2010@
+<pre>$ java -jar build/jar/bracketeer.jar 2010 women WomenScorer2010</pre>
 
 If the scorer has generated any other output, it will be found in the @results/@ directory.
 
